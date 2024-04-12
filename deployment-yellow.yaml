@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yellow
+  namespace: dev
+  labels:
+    app: yellow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yellow
+  template:
+    metadata:
+      labels:
+        app: yellow
+    spec:
+      containers:
+        - name: yellow
+          image: alpine
+          command:
+            - "sleep"
+            - "infinity"

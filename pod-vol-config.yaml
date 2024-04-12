@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+  namespace: dev
+spec:
+  volumes:
+    - name: app-config-volumes
+      configMap:
+        name: app-config
+  containers:
+    - name: debug
+      image: alpine
+      command:
+        - sleep
+        - infinity
+      volumeMounts:
+        - name: app-config-volumes
+          mountPath: /mnt/config
+

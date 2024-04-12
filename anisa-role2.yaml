@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: anisa-role
+  namespace: dev
+rules:
+  - apiGroups:
+    - ""
+    resources:
+      - "pods"
+    verbs:
+      - "list"
+      - "get"
+  - apiGroups:
+    - "apps"
+    resources:
+      "deployments"
+    verbs:
+      - "list"
+      - "get"
+      - "create"
+      - "watch"
+    resourceNames:
+      - "nginx-blue"

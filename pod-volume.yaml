@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: storage-test-hostpath
+  namespace: dev
+  labels:
+    app: storage
+spec:
+  volumes:
+    - name: data-volume
+      persistentVolumeClaim:
+        claimName: myclaim
+  containers:
+    - name: alpine
+      image: alpine
+      volumeMounts:
+        - mountPath: /mydir
+          name: data-volume
+      command:
+        - sleep
+        - infinity
+

@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJsb3d5aWlpaSIsInBhc3N3b3JkIjoiYTE5OTQxOTk0bSIsImF1dGgiOiJiRzkzZVdscGFXazZZVEU1T1RReE9UazBiUT09In19fQ==
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: reza-repo
+  namespace: dev
+type: kubernetes.io/dockerconfigjson

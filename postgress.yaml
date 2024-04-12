@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+  namespace: dev
+spec:
+  containers:
+    - name: debug
+      image: postgres
+      envFrom:
+        - configMapRef:
+            name: app-config

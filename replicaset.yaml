@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset1
+  labels:
+    app: nginx
+    type: front-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      anisa: kubernetes
+  template:
+    metadata:
+      name: pod-nginx2
+      labels:
+        anisa: kubernetes
+    spec:
+      containers:
+        - name: nginx-replica-container
+          image: nginx:1.20

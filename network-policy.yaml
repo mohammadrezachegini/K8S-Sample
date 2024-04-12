@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: webserver
+  namespace: dev
+spec:
+  podSelector:
+    matchLabels:
+      type: front-end
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: green
+      ports:
+        - port: 80
+          protocol: TCP

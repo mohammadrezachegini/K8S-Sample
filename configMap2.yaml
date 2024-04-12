@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  labels:
+    app: db
+data:
+  config.env: |
+    hello: anisa
+    cache_size: 24
+    db.port: 5432
+    debug_mode: true
+

@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-blue
+  namespace: dev
+  labels:
+    app: nginx-blue
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      type: nginx-blue
+  template:
+    metadata:
+      labels:
+        type: nginx-blue
+    spec:
+      containers:
+        - name: nginx-deploy-container
+          image: nginx:1.20
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "10M"
+            limits:
+              cpu: "20"
+              memory: "15M"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: "color"
+                    operator: "In"
+                    values:
+                      - "blue"
+      
+      tolerations:
+        - key: "color"
+          operator: "Equal"
+          value: "blue"
+          effect: "NoSchedule"
+      # affinity:
+      #   nodeAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #         - matchExpressions:
+      #             - key: "size"
+      #               operator: "In"
+      #               values:
+      #                 - "large"
+      #                 - "small"
+
+
+      # nodeSelector:
+      #   size: small        
+      # tolerations:
+      #   - key: "anisa"
+      #     operator: "Equal"
+      #     value: "edu"
+      #     effect: "NoSchedule"
